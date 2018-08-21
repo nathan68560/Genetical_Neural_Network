@@ -1,0 +1,166 @@
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	sprite.set_constant("#sprite", "tint", vmath.vector4(math.random(), 0.5, math.random(), 1))
+	
+	self.speed = 200
+	self.pos = go.get_position()
+	self.t = 0
+	
+	self.triggerA = 0 --input1, front car ray_cast
+	self.triggerG = 0 --input2, left car ray_cast
+	self.triggerD = 0 --input3, right car ray_cast
+	self.triggerG1 = 0 --input4, 45° left car ray_cast
+	self.triggerD1 = 0 --input5, 45° right car ray_cast
+	self.fitness = 0 --fitness of the car
+
+
+	local save_car_AI = sys.load(sys.get_save_file("Genetical_Neural_Network", "save_car_AI"))
+	if not next(save_car_AI) then --if there's no previous car's AI save in C:\Users\ UserName \AppData\Roaming\Genetical_Neural_Network then
+		
+		--attribute random weight for the connection between input nodes and hidden layer nodes (5*5)
+		self.weight1 = {}
+		for i = 1, 25 do
+			table.insert(self.weight1, math.random())
+		end
+
+		--attribute random weight hidden layer nodes (5)
+		self.layer = {math.random(), math.random(), math.random(), math.random(), math.random()}
+
+		--attribute random weight for the connection between hidden layer nodes and output nodes (5*2)
+		self.weight2 = {}
+		for i = 1, 10 do
+			table.insert(self.weight2, math.random())
+		end
+		
+		--attribute random weight output nodes (2)
+		self.out = {math.random(), math.random()}
+		
+	else --if there's a previous car's AI saved then inherits the "genes" of the previous best car's AI with a random mutation rate
+	
+		self.weight1 = save_car_AI.weight1
+		if math.random() > 0.75 then --mutation rate of 1/4
+			for i = 1, math.random(1, 25) do
+				self.weight1[math.random(1, 25)] = math.random()
+			end
+		end
+
+		self.layer = save_car_AI.layer
+		if math.random() > 0.75 then
+			for i = 1, math.random(1, 5) do
+				self.layer[math.random(1, 5)] = math.random()
+			end
+		end
+
+		self.weight2 = save_car_AI.weight2
+		if math.random() > 0.75 then
+			for i = 1, math.random(1, 10) do
+				self.weight2[math.random(1, 10)] = math.random()
+			end
+		end
+
+		self.out = save_car_AI.out
+		if math.random() > 0.75 then
+			for i = 1, math.random(1, 2) do
+				self.out[math.random(1, 2)] = math.random()
+			end
+		end
+	end
+	
+	self.node1 = nil --value of the hidden layer's node 1
+	self.node2 = nil --value of the hidden layer's node 2
+	self.node3 = nil --value of the hidden layer's node 3
+	self.node4 = nil --value of the hidden layer's node 4
+	self.node5 = nil --value of the hidden layer's node 5
+
+	self.output1 = nil --value of the output's node 1
+	self.output2 = nil --value of the output's node 2
+end
+
+function final(self)
+	msg.post("/go#main", "save", {fitness = self.fitness, weight1 = self.weight1, layer = self.layer, weight2 = self.weight2, out = self.out})
+	msg.post(".", "release_input_focus")
+end
+
+function update(self, dt)
+	self.pos = go.get_position()
+	
+	--NEURAL NETWORK :
+	--calculate the value of each hidden layer's nodes : (input[n]*weight connection[n] + input[n+1]*weight connection[n+1]) + hidden layer's node weight
+	--apply the tanh function on the result so the value is between -1 and 1
+	self.node1 = math.tanh((self.triggerA * self.weight1[1] + self.triggerG * self.weight1[6] + self.triggerD * self.weight1[11] + self.triggerG1 * self.weight1[16] + self.triggerD1 * self.weight1[21]) + self.layer[1])
+	self.node2 = math.tanh((self.triggerA * self.weight1[2] + self.triggerG * self.weight1[7] + self.triggerD * self.weight1[12] + self.triggerG1 * self.weight1[17]+ self.triggerD1 * self.weight1[22]) + self.layer[2])
+	self.node3 = math.tanh((self.triggerA * self.weight1[3] + self.triggerG * self.weight1[8] + self.triggerD * self.weight1[13] + self.triggerG1 * self.weight1[18] + self.triggerD1 * self.weight1[23]) + self.layer[3])
+	self.node4 = math.tanh((self.triggerA * self.weight1[4] + self.triggerG * self.weight1[9] + self.triggerD * self.weight1[14] + self.triggerG1 * self.weight1[19] + self.triggerD1 * self.weight1[24]) + self.layer[4])
+	self.node5 = math.tanh((self.triggerA * self.weight1[5] + self.triggerG * self.weight1[10] + self.triggerD * self.weight1[15] + self.triggerG1 * self.weight1[20] + self.triggerD1 * self.weight1[25]) + self.layer[5])
+	
+	--caluclate the value of each output's nodes (same as for hidden layer's nodes)
+	self.output1 = math.tanh((self.node1 * self.weight2[1] + self.node2 * self.weight2[2] + self.node3 * self.weight2[3] + self.node4 * self.weight2[4] + self.node5 * self.weight2[5]) + self.out[1])
+	self.output2 = math.tanh((self.node1 * self.weight2[6] + self.node2 * self.weight2[7] + self.node3 * self.weight2[8] + self.node4 * self.weight2[9] + self.node5 * self.weight2[10]) + self.out[2])
+
+	--confront the two output value 
+	if self.output1 > self.output2 then
+		self.rot = vmath.quat_axis_angle(vmath.vector3(0, 0, 1), -3*dt) --turn left
+	elseif self.output1 < self.output2 then
+		self.rot = vmath.quat_axis_angle(vmath.vector3(0, 0, 1), 3*dt) --turn right
+	end	
+
+	--while the speed is equal to 200 (haven't hit any wall or finished the race)
+	if self.speed == 200 then
+		go.set_rotation(go.get_rotation() * self.rot)
+		go.set_position(self.pos + vmath.rotate(go.get_rotation(), vmath.vector3(0, self.speed * dt, 0)))
+	end
+
+	--car's life span
+	if self.t >= 10 then
+		go.delete()
+	else
+		self.t = self.t + dt
+	end
+
+	--the 5 inputs ray_cast
+	physics.ray_cast(self.pos, self.pos + vmath.rotate(go.get_rotation(), vmath.vector3(-math.sqrt(2)/2, math.sqrt(2)/2, 0)*750), {hash("wall")}, 1)
+	physics.ray_cast(self.pos, self.pos + vmath.rotate(go.get_rotation(), vmath.vector3(math.sqrt(2)/2, math.sqrt(2)/2, 0)*750), {hash("wall")}, 2)
+	physics.ray_cast(self.pos, self.pos + vmath.rotate(go.get_rotation(), vmath.vector3(-750, 0, 0)), {hash("wall")}, 3)
+	physics.ray_cast(self.pos, self.pos + vmath.rotate(go.get_rotation(), vmath.vector3(750, 0, 0)), {hash("wall")}, 4)
+	physics.ray_cast(self.pos, self.pos + vmath.rotate(go.get_rotation(), vmath.vector3(0, 750, 0)), {hash("wall")}, 5)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("contact_point_response") then
+		if message.group == hash("wall") and self.speed == 200 then --if they crash
+			self.speed = 0
+			--longer they live, better they are :
+			self.fitness = self.t
+			--OR
+			--nearer from the finish they are, better they are :
+			self.fitness = 1/math.sqrt((self.pos.x - go.get_position("/finish").x)^2 + (self.pos.y - go.get_position("/finish").y)^2)
+		elseif message.group == hash("finish") and self.speed == 200 then --if they finish the race
+			self.speed = 0
+			self.fitness = 100 - self.t --faster they finish the race, better they are
+		end
+	elseif message_id == hash("ray_cast_response") then
+		if message.request_id == 1 then
+			self.triggerG1 = message.fraction
+		elseif message.request_id == 2 then
+			self.triggerD1 = message.fraction
+		elseif message.request_id == 3 then
+			self.triggerG = message.fraction
+		elseif message.request_id == 4 then
+			self.triggerD = message.fraction
+		elseif message.request_id == 5 then
+			self.triggerA = message.fraction
+		end
+	elseif message_id == hash("ray_cast_missed") then
+		if message.request_id == 1 then
+			self.triggerG1 = 1
+		elseif message.request_id == 2 then
+			self.triggerD1 = 1
+		elseif message.request_id == 3 then
+			self.triggerG = 1
+		elseif message.request_id == 4 then
+			self.triggerD = 1
+		elseif message.request_id == 5 then
+			self.triggerA = 1
+		end
+	end
+end

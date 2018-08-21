@@ -1,0 +1,79 @@
+function init(self)
+	msg.post(".", "acquire_input_focus")
+	math.randomseed(os.time())
+	math.random()
+	math.random()
+	math.random()
+	math.random()
+	self.click = false
+
+	self.t = -100
+
+	local save_car_AI = sys.load(sys.get_save_file("Genetical_Neural_Network", "save_car_AI"))
+	if not next(save_car_AI) then
+		self.generation = 0
+		self.bestFitness = 0
+	else
+		self.generation = save_car_AI.generation
+		self.bestFitness = save_car_AI.bestFitness
+	end
+end
+
+function update(self, dt)
+	--life span of each generation (the same as the one in car.script + 0.1)
+	if self.t >= 10.1 then
+		begin(self)
+		self.t = 0
+		label.set_text("/go#label", "")
+	else
+		self.t = self.t + dt
+	end
+
+	label.set_text("/go#generation", "GENERATION : "..self.generation)
+	label.set_text("/go#timer", math.floor(self.t * 10)/10)
+end
+
+function begin(self) --spawn 10 new specimen for each generation
+	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	self.generation = self.generation + 1
+	self.bestFitness = 0 --reinitialize the best fitness every new generation (not necessary, give better result but take more time)
+end
+
+function on_message(self, message_id, message, sender)
+	if message_id == hash("save") then
+		--save the car's neural network with the biggest fitness
+		if self.bestFitness < message.fitness then
+			self.bestFitness = message.fitness
+			local save_car_AI = {
+				bestFitness = self.bestFitness,
+				generation = self.generation,
+				weight1 =  message.weight1,
+				layer = message.layer,
+				weight2 = message.weight2,
+				out = message.out
+			}
+			local success = sys.save(sys.get_save_file("Genetical_Neural_Network", "save_car_AI"), save_car_AI)
+			label.set_text("/go#label", "*best car's AI succesfully saved*")
+		else
+
+		end
+	end
+end
+
+function on_input(self, action_id, action)
+	--the first generation only start when left click
+	if action_id == hash("click") and action.released and not self.click then
+		begin(self)
+		self.t = 0
+		self.click = true
+	end	
+end

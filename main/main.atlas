@@ -1,0 +1,15 @@
+images {
+  image: "/assets/images/background.png"
+}
+images {
+  image: "/assets/images/car.png"
+}
+images {
+  image: "/assets/images/finish.png"
+}
+images {
+  image: "/assets/images/wall.png"
+}
+margin: 0
+extrude_borders: 2
+inner_padding: 0

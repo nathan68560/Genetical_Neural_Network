@@ -1,0 +1,569 @@
+name: "main"
+instances {
+  id: "finish"
+  prototype: "/main/finish.go"
+  position {
+    x: 1217.0
+    y: 360.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.70710677
+    w: 0.70710677
+  }
+  scale3 {
+    x: 0.2
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "wall"
+  prototype: "/main/wall.go"
+  position {
+    x: 236.0
+    y: 560.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "wall1"
+  prototype: "/main/wall.go"
+  position {
+    x: 236.0
+    y: 160.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "wall3"
+  prototype: "/main/wall.go"
+  position {
+    x: 735.0
+    y: 420.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.5
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "wall4"
+  prototype: "/main/wall.go"
+  position {
+    x: 531.0
+    y: 494.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: -0.3007058
+    w: 0.95371693
+  }
+  scale3 {
+    x: 0.65
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "wall6"
+  prototype: "/main/wall.go"
+  position {
+    x: 1006.0
+    y: 560.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.25881904
+    w: 0.9659258
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "wall7"
+  prototype: "/main/wall.go"
+  position {
+    x: 1006.0
+    y: 160.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: -0.25881904
+    w: 0.9659258
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "wall8"
+  prototype: "/main/wall.go"
+  position {
+    x: 17.0
+    y: 361.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.70710677
+    w: 0.70710677
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "wall2"
+  prototype: "/main/wall.go"
+  position {
+    x: 735.0
+    y: 300.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 0.5
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "wall5"
+  prototype: "/main/wall.go"
+  position {
+    x: 533.0
+    y: 229.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.3007058
+    w: 0.95371693
+  }
+  scale3 {
+    x: 0.65
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "wall9"
+  prototype: "/main/wall.go"
+  position {
+    x: 1285.0
+    y: 588.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: -0.3007058
+    w: 0.95371693
+  }
+  scale3 {
+    x: 0.65
+    y: 1.0
+    z: 1.0
+  }
+}
+instances {
+  id: "wall10"
+  prototype: "/main/wall.go"
+  position {
+    x: 1285.0
+    y: 135.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.3007058
+    w: 0.95371693
+  }
+  scale3 {
+    x: 0.65
+    y: 1.0
+    z: 1.0
+  }
+}
+scale_along_z: 0
+embedded_instances {
+  id: "main"
+  data: "components {\n"
+  "  id: \"main\"\n"
+  "  component: \"/main/main.script\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"background\"\n"
+  "  type: \"sprite\"\n"
+  "  data: \"tile_set: \\\"/main/main.atlas\\\"\\n"
+  "default_animation: \\\"background\\\"\\n"
+  "material: \\\"/builtins/materials/sprite.material\\\"\\n"
+  "blend_mode: BLEND_MODE_ALPHA\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: -1.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"factory\"\n"
+  "  type: \"factory\"\n"
+  "  data: \"prototype: \\\"/main/car.go\\\"\\n"
+  "load_dynamically: false\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"generation\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "  z: 0.0\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "scale {\\n"
+  "  x: 1.0\\n"
+  "  y: 1.0\\n"
+  "  z: 1.0\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "color {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "outline {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "shadow {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "leading: 1.0\\n"
+  "tracking: 0.0\\n"
+  "pivot: PIVOT_CENTER\\n"
+  "blend_mode: BLEND_MODE_ALPHA\\n"
+  "line_break: false\\n"
+  "text: \\\"GENERATION : 0\\\"\\n"
+  "font: \\\"/assets/untitled.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label.material\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 309.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"label\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "  z: 0.0\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "scale {\\n"
+  "  x: 0.6\\n"
+  "  y: 0.6\\n"
+  "  z: 1.0\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "color {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "outline {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "shadow {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "leading: 1.0\\n"
+  "tracking: 0.0\\n"
+  "pivot: PIVOT_CENTER\\n"
+  "blend_mode: BLEND_MODE_ALPHA\\n"
+  "line_break: false\\n"
+  "text: \\\"\\\"\\n"
+  "font: \\\"/assets/untitled.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label.material\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 0.0\n"
+  "    y: 218.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  "embedded_components {\n"
+  "  id: \"timer\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "  z: 0.0\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "scale {\\n"
+  "  x: 1.0\\n"
+  "  y: 1.0\\n"
+  "  z: 1.0\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "color {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "outline {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "shadow {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "leading: 1.0\\n"
+  "tracking: 0.0\\n"
+  "pivot: PIVOT_W\\n"
+  "blend_mode: BLEND_MODE_ALPHA\\n"
+  "line_break: false\\n"
+  "text: \\\"\\\"\\n"
+  "font: \\\"/assets/untitled.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label.material\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: -625.0\n"
+  "    y: 316.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 640.0
+    y: 360.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
+embedded_instances {
+  id: "level structure"
+  children: "finish"
+  children: "wall"
+  children: "wall1"
+  children: "wall10"
+  children: "wall2"
+  children: "wall3"
+  children: "wall4"
+  children: "wall5"
+  children: "wall6"
+  children: "wall7"
+  children: "wall8"
+  children: "wall9"
+  data: "embedded_components {\n"
+  "  id: \"info\"\n"
+  "  type: \"label\"\n"
+  "  data: \"size {\\n"
+  "  x: 128.0\\n"
+  "  y: 32.0\\n"
+  "  z: 0.0\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "scale {\\n"
+  "  x: 0.6\\n"
+  "  y: 0.6\\n"
+  "  z: 1.0\\n"
+  "  w: 0.0\\n"
+  "}\\n"
+  "color {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "outline {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "shadow {\\n"
+  "  x: 0.0\\n"
+  "  y: 0.0\\n"
+  "  z: 0.0\\n"
+  "  w: 1.0\\n"
+  "}\\n"
+  "leading: 1.0\\n"
+  "tracking: 0.0\\n"
+  "pivot: PIVOT_CENTER\\n"
+  "blend_mode: BLEND_MODE_ALPHA\\n"
+  "line_break: false\\n"
+  "text: \\\"This level is specially designed\\\\n"
+  "\\\"\\n"
+  "  \\\"to train the neural network to use all his\\\\n"
+  "\\\"\\n"
+  "  \\\"5 inputs at the same time, and not only use 2 of \\\\n"
+  "\\\"\\n"
+  "  \\\"them.\\\"\\n"
+  "font: \\\"/assets/untitled.font\\\"\\n"
+  "material: \\\"/builtins/fonts/label.material\\\"\\n"
+  "\"\n"
+  "  position {\n"
+  "    x: 666.0\n"
+  "    y: 80.0\n"
+  "    z: 0.0\n"
+  "  }\n"
+  "  rotation {\n"
+  "    x: 0.0\n"
+  "    y: 0.0\n"
+  "    z: 0.0\n"
+  "    w: 1.0\n"
+  "  }\n"
+  "}\n"
+  ""
+  position {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  rotation {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+    w: 1.0
+  }
+  scale3 {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+}
