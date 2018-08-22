@@ -24,26 +24,26 @@ function update(self, dt)
 	if self.t >= 10.1 then
 		begin(self)
 		self.t = 0
-		label.set_text("/go#label", "")
+		label.set_text("/main#label", "")
 	else
 		self.t = self.t + dt
 	end
 
-	label.set_text("/go#generation", "GENERATION : "..self.generation)
-	label.set_text("/go#timer", math.floor(self.t * 10)/10)
+	label.set_text("/main#generation", "GENERATION : "..self.generation)
+	label.set_text("/main#timer", math.floor(self.t * 10)/10)
 end
 
 function begin(self) --spawn 10 new specimen for each generation
-	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
-	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
-	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
-	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
-	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
-	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
-	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
-	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
-	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
-	factory.create("/go#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/main#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/main#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/main#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/main#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/main#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/main#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/main#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/main#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/main#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
+	factory.create("/main#factory", vmath.vector3(150, 360, 0), vmath.quat_rotation_z(math.rad(-90)), nil, vmath.vector3(0.25, 0.25, 1))
 	self.generation = self.generation + 1
 	self.bestFitness = 0 --reinitialize the best fitness every new generation (not necessary, give better result but take more time)
 end
@@ -62,7 +62,7 @@ function on_message(self, message_id, message, sender)
 				out = message.out
 			}
 			local success = sys.save(sys.get_save_file("Genetical_Neural_Network", "save_car_AI"), save_car_AI)
-			label.set_text("/go#label", "*best car's AI succesfully saved*")
+			label.set_text("/main#label", "*best car's AI succesfully saved*")
 		else
 
 		end

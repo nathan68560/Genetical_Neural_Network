@@ -77,7 +77,7 @@ function init(self)
 end
 
 function final(self)
-	msg.post("/go#main", "save", {fitness = self.fitness, weight1 = self.weight1, layer = self.layer, weight2 = self.weight2, out = self.out})
+	msg.post("/main#main", "save", {fitness = self.fitness, weight1 = self.weight1, layer = self.layer, weight2 = self.weight2, out = self.out})
 	msg.post(".", "release_input_focus")
 end
 
