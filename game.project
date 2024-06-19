@@ -16,10 +16,10 @@ height = 720
 shared_state = 1
 
 [windows]
-app_icon = /assets/appicons/appicon.ico
+app_icon = /assets/app_icons/appicon.ico
 
 [osx]
-app_icon = /assets/appicons/appicon.icns
+app_icon = /assets/app_icons/appicon.icns
 
 [physics]
 trigger_overlap_capacity = 32
